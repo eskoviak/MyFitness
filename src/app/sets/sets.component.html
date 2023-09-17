@@ -1,1 +1,39 @@
-<p>sets works!</p>
+<p>Enter the set data for workout date {{workout_date}}</p>
+<form [formGroup]='setsForm' (ngSubmit)="onSubmit()">
+
+    <div class="form-space">
+        <label for="exercise">Exercise: </label>
+        <select id="execise" formControlName="exercise">
+            <option *ngFor="let exercise of exercises; index as i;
+                trackby: exerciseTrackBy" label={{exercises[i].name}}>
+                {{ exercises[i].id }}</option>
+        </select>
+    </div>
+    
+    <div class="form-space">
+        <label for="cadence">Cadence:</label>
+        <input id="cadence" formControlName="'cadence">
+    </div>
+    <div *ngIf="cadence!.invalid && (cadence!.dirty || cadence!.touched)" class="alert alert-danger">
+        <div *ngIf="cadence!.errors?.['required']" class="error">
+            A Cadence is required.
+          </div>
+    </div>
+
+    <div class="form-space">
+        <label for="weights">Weights:</label>
+        <input id="weights" formControlName="weights">
+        <label for="weight_unit">Units:</label>
+        <input id="weight_unit" formControlName="weigh_unit">
+    </div>
+    
+    <div class="form-space">
+        <label for="notes">Notes:</label>
+        <input id="notes" formControlName="notes">
+    </div>
+    <div class="form-space">
+            <button type="submit" [disabled]="false">Submit</button>
+    </div>
+
+
+</form>    
