@@ -53,11 +53,16 @@ export class SetsComponent {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     // TODO:  Call api to enter data; get data back from db and display in edit mode
-    console.log('In onSubmit')
-    this.edit_flag = true;
-
-    
-        
+    //console.log('In onSubmit')
+    //this.edit_flag = true;
+    this.setsForm.controls.cadence.setValue(String(this.formatCadence()))
+  }
+  
+  formatCadence() {
+    var cadence = String(this.setsForm.get('cadence'))
+    const Xre = RegExp('x')
+    var is_x_pattern = Xre.test(cadence)
+    return is_x_pattern
   }
   
   onUpdate() {
